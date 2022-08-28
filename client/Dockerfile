@@ -11,7 +11,7 @@ COPY ./package.json ./
 RUN npm install --no-audit
 
 COPY . .
-RUN npm run builder
+RUN npm run build
 
 FROM nginx
 EXPOSE 3000
