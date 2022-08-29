@@ -1,0 +1,35 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image":"brainece/multi-client",
+            "hostname":"client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image":"brainece/multi-server",
+            "hostname":"api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image":"brainece/multi-worker",
+            "hostname":"worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image":"brainece/multi-nginx",
+            "essential": true,
+            "portMappings":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links":["client","server"]
+        }
+    ]
+}
